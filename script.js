@@ -19,12 +19,6 @@ function generatePassword() {
   var password = "";
   var isValid = true;
 
-  var passwordLength;
-  var hasLowerCase;
-  var hasUpperCase;
-  var hasNumeric;
-  var hasSpecial;
-
   var numericCharSelector = '0987654321';
   var lowerCaseSelector = 'abcdefghijklmnopqrstuvwxyz';
   var upperCaseSelector = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -33,12 +27,14 @@ function generatePassword() {
   var selectorArray = [];
 
 
-  passwordLength = parseInt(prompt("How long is your password? Enter a number between 8 to 128."));
-  hasLowerCase = confirm("Does it require lower case characters?");
-  hasUpperCase = confirm("Does it require upper case characters?");
-  hasNumeric = confirm("Does it require numeric characters?");
-  hasSpecial = confirm("Does it require special characters?");
+  // prompts the user the password requirements
+  var passwordLength = parseInt(prompt("How long is your password? Enter a number between 8 to 128."));
+  var hasLowerCase = confirm("Does it require lower case characters?");
+  var hasUpperCase = confirm("Does it require upper case characters?");
+  var hasNumeric = confirm("Does it require numeric characters?");
+  var hasSpecial = confirm("Does it require special characters?");
 
+  // Validity check
   if (isNaN(passwordLength) || ((passwordLength < 8) || (passwordLength > 128))) {
     alert("Please enter a number to indicate the length of the password between 8 to 128.");
     isValid = false;
@@ -49,6 +45,8 @@ function generatePassword() {
     isValid = false;
   }
 
+
+  // Load requirements into the selector 
   if (hasSpecial) {
     selectorArray.push(specialCharSelector);
   }
@@ -65,6 +63,8 @@ function generatePassword() {
     selectorArray.push(lowerCaseSelector);
   }
 
+
+  // load characters into the password variable to be returned back to main
   for (var count = 0; count < passwordLength; count++) {
     var selector = Math.floor(Math.random() * selectorArray.length);
     var character = Math.floor(Math.random() * selectorArray[selector].length);
