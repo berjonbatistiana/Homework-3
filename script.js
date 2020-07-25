@@ -16,7 +16,7 @@ generateBtn.addEventListener("click", writePassword);
 function generatePassword() {
 
   // Initialize required variables
-  var password = "";
+  var password = "Error: Please Try Again";
   var isValid = true;
 
   var numericCharSelector = '0987654321';
@@ -45,30 +45,31 @@ function generatePassword() {
     isValid = false;
   }
 
+  if (isValid) {
+    // Load requirements into the selector 
+    if (hasSpecial) {
+      selectorArray.push(specialCharSelector);
+    }
 
-  // Load requirements into the selector 
-  if (hasSpecial) {
-    selectorArray.push(specialCharSelector);
-  }
+    if (hasNumeric) {
+      selectorArray.push(numericCharSelector);
+    }
 
-  if (hasNumeric) {
-    selectorArray.push(numericCharSelector);
-  }
+    if (hasUpperCase) {
+      selectorArray.push(upperCaseSelector);
+    }
 
-  if (hasUpperCase) {
-    selectorArray.push(upperCaseSelector);
-  }
-
-  if (hasLowerCase) {
-    selectorArray.push(lowerCaseSelector);
-  }
+    if (hasLowerCase) {
+      selectorArray.push(lowerCaseSelector);
+    }
 
 
-  // load characters into the password variable to be returned back to main
-  for (var count = 0; count < passwordLength; count++) {
-    var selector = Math.floor(Math.random() * selectorArray.length);
-    var character = Math.floor(Math.random() * selectorArray[selector].length);
-    password += (selectorArray[selector][character]);
+    // load characters into the password variable to be returned back to main
+    for (var count = 0; count < passwordLength; count++) {
+      var selector = Math.floor(Math.random() * selectorArray.length);
+      var character = Math.floor(Math.random() * selectorArray[selector].length);
+      password += (selectorArray[selector][character]);
+    }
   }
 
   return password;
