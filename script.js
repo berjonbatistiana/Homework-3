@@ -46,6 +46,7 @@ function generatePassword() {
   }
 
   if (isValid) {
+    password = "";
     // Load requirements into the selector 
     if (hasSpecial) {
       selectorArray.push(specialCharSelector);
